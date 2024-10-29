@@ -1,5 +1,4 @@
 public class Eratostenes {
-
     /**
      * prints out all primes smaller than max
      * @param max upper bound for finding primes
@@ -23,7 +22,6 @@ public class Eratostenes {
             }
         }
     }
-
     public static void main(String[] args) {
         int max = Integer.parseInt(args[0]);
         printPrimes(max);

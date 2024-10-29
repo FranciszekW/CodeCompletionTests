@@ -1,6 +1,5 @@
 global smax
 global umax
-
 ; Parameters in edi, esi registers
 smax:
     cmp edi, esi
