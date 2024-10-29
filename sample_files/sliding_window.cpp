@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 int przedzial(vector<int> &v, int r) // szukamy, takiego c, żeby w przedziale [c - r, c + r] zmieścić jak najwięcej liczb z v
@@ -28,7 +27,6 @@ int przedzial(vector<int> &v, int r) // szukamy, takiego c, żeby w przedziale [
     }
     return wyn;
 }
-
 int main()
 {
     int n, r;

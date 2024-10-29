@@ -1,6 +1,5 @@
 import os
 import shutil
-
 # Function to move images from raw_images to data and raise error on collisions
 def move_images_with_collision_check(raw_images_dir, images_dir):
     # Iterate through each brand folder in the raw_images directory
