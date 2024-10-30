@@ -27,10 +27,10 @@ Prefix,Suffix,Correct middle,Predicted middle
         printPrimes(max);
     }
 }","if (isPrime[i]) {
-                for (int k = 0; i * i + k *","isPrime[max - i] = false;
-            }
-            k = max - i;
-            for (int "
+                for (int k = 0; i * i + k *","if (isPrime[i]) {
+                System.out.print(i);
+                System.out.print(' ');
+            }"
 "public class Eratostenes {
     /**
      * prints out all primes smaller than max
@@ -58,13 +58,8 @@ Prefix,Suffix,Correct middle,Predicted middle
                 }
             }
         }
-        for (int i = 0; i < max; ++i) {","String max) {
-        int prime = int(max / 2);
-        int prime1 = (prime + 1) / 2;
-        int prime2 = (prime + 1) % 2;
-        for (int x = 0; x < max; x++) {
-            if(prime1 % prime == 0) {
-      "
+        for (int i = 0; i < max; ++i) {","args) {
+  "
 "global smax
 global umax
 ; Parameters in edi, esi registers
@@ -77,10 +72,8 @@ smax:
     ret ; result in eax
 umax:
     cmp edi, esi
-    cmovb eax, es","value of smax in edi (or 1 if smax is set to 1)
-umax:
-        value of umax in edi (or 1 if smax is set to 1)
-; Parameter for smax, umax; if smax or umax > s"
+    cmovb eax, es","umax:
+        umax:  umax = 0 ; esi "
 "global smax
 global umax
 ; Parameters in edi, esi registers
@@ -93,9 +86,11 @@ umax:
     cmovb eax, esi ; if edi < esi then return esi, b stands for BELOW
     cmovnb eax, edi ; else edi
     ret ; result in eax","cmp edi, esi
-    cmovl eax, e","global max value in memory
+    cmovl eax, e","; length of eax
 umax:
-    cmp edi, esi"
+  ; length of eax
+""""""
+def"
 "import os
 import shutil
 # Function to move images from raw_images to data and raise error on collisions
@@ -104,10 +99,7 @@ def move_images_with_collision_check(r","r):
         print(f""Moving images from: {raw_brand_folder}"")
         data_brand_folder = os.path.join(images_dir, brand)","aw_images_dir, images_dir):
     # Iterate through each brand folder in the raw_images directory
-    for brand in os.listdir(raw_images_di","equest, raw_images_dir, images_dir, brand):
-    if request.method == 'POST':
-        if 'brand' in request.files:
-            print(f""The image"
+    for brand in os.listdir(raw_images_di","equested_images_dir, raw_images_di"
 "import os
 import shutil
 # Function to move images from raw_images to data and raise error on ","mages_dir):
@@ -116,28 +108,29 @@ import shutil
         raw_brand_folder = os.path.join(raw_images_dir, brand)
         print(f""Moving images from: {raw_brand_folder}"")
         data_brand_folder = os.path.join(images_dir, brand)","collisions
-def move_images_with_collision_check(raw_images_dir, i","images not exist
-def move_images(raw_images_dir, o"
+def move_images_with_collision_check(raw_images_dir, i","folder with 404 error
+def move_images(raw_images_dir, da"
 "# Ensure we are dealing with directories
         if os.path.isdir(raw_bra","sponding data brand folder exists in the data directory
             if not os.path.exists(data_brand_folder):
                 print(f""Creating brand folder in data: {data_brand_folder}"")
                 os.makedirs(data_brand_folder)","nd_folder):
-            # Check if the corre","rce_path):
-            os.makedirs(raw_brarce"
+            # Check if the corre","y):
+            raise Exception(f""The raw_bray {raw"
 "# Ensure we are dealing with directories
      ","      if not os.path.exists(data_brand_folder):
                 print(f""Creating brand folder in data: {data_brand_folder}"")
                 os.makedirs(data_brand_folder)","if os.path.isdir(raw_brand_folder):
-            # Check if the corresponding data brand folder exists in the data directory","if not os.path.exists(os.path.join(data_brand_folder, ""data"")):
-                print(f""Creating brand"
+            # Check if the corresponding data brand folder exists in the data directory","if not os.path.exists(brand_folder):
+            os.makedirs(brand_folder)
+            os.makedirs(os.path.join"
 "# Ensure we are dealing with directories
         if os.path.isdir(raw_brand_folder):
             # Check if the corresponding data bran"," data directory
             if not os.path.exists(data_brand_folder):
                 print(f""Creating brand folder in data: {data_brand_folder}"")
-                os.makedirs(data_brand_folder)",d folder exists in the,"ts are present in the directory
-            if os."
+                os.makedirs(data_brand_folder)",d folder exists in the,"k folder exists
+            if not os.path."
 "# Iterate through the files in the raw brand folder
             for filename in os.listdir(raw_brand_folder):
                 raw_image_path = os.pa"," a file with the same name already exists in the destination
@@ -147,9 +140,9 @@ def move_images(raw_images_dir, o"
                 shutil.move(raw_image_path, data_image_path)","th.join(raw_brand_folder, filename)
                 data_image_path = os.path.join(data_brand_folder, filename)
                 # Check if","th.join(raw_brand_folder, filename)
-                # Load the image as PIL
-                raw_image = Image.open(raw_image_path)
-                # Make sure"
+                # Read the file
+                with Image.open(raw_image_path) as image:
+                    image_data = image.load()"
 "# Iterate through the files in the raw brand folder
             for filename in os.listdir(raw_brand_folder):
                 raw_image_path = os.path.join(raw_brand_folder, filename)
@@ -158,7 +151,8 @@ def move_images(raw_images_dir, o"
                 if os.path.exists(data_image_path):
                     raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
                 # Move the file to the corresponding brand folder in the data directory
-                shutil.move(raw_image_path, data_image_path)","n(data_brand_folder, filena","n(raw_brand_folder, datena"
+                shutil.move(raw_image_path, data_image_path)","n(data_brand_folder, filena","n(data_brand_folder, filename)
+                data_image_"
 "# Iterate through the files in the raw brand folder
             for filename in os.listdir(","           raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
                 # Move the file to the corresponding brand folder in the data directory
@@ -166,12 +160,9 @@ def move_images(raw_images_dir, o"
                 raw_image_path = os.path.join(raw_brand_folder, filename)
                 data_image_path = os.path.join(data_brand_folder, filename)
                 # Check if a file with the same name already exists in the destination
-                if os.path.exists(data_image_path):","filename_folder):
-                # Get the data_image path of the file
-                data_image_path = os.path.join(data_path_raw_brand, filename)
-                # If there is no data_image path in the folder
-                if not os.path.exists(data_image_path):
-                    continue
+                if os.path.exists(data_image_path):","'raw_data'):
+                # Open the file and grab the raw data for the specified image
+                data_image_path = os.path.join(raw_data_root, filename)
      "
 "# Iterate through the files in the raw brand folder
             for filename in os.listdir(raw_brand_folder):
@@ -181,7 +172,8 @@ def move_images(raw_images_dir, o"
                 if os.path.exists(data_image_path):
                     raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
                 # Move the file to the corresponding brand folder in the data directory
-                shutil.move(raw_image_path, data_image_path)",raw_image_path = os.path.join(raw_brand_folde,raw_image_path = os.path.join(raw_brand_fo
+                shutil.move(raw_image_path, data_image_path)",raw_image_path = os.path.join(raw_brand_folde,"# Split file name into a list
+                # Check if file is already a brand folder and its extension is brand"
 "# Iterate through the files in the raw brand folder
             for filename i","rand_folder, filename)
                 data_image_path = os.path.join(data_brand_folder, filename)
@@ -190,9 +182,9 @@ def move_images(raw_images_dir, o"
                     raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
                 # Move the file to the corresponding brand folder in the data directory
                 shutil.move(raw_image_path, data_image_path)","n os.listdir(raw_brand_folder):
-                raw_image_path = os.path.join(raw_b","n os.listdir(raw_brand_folder):
-                # If the file name is not of the expected extension
-                if not filename.endswith(('.jpg"
+                raw_image_path = os.path.join(raw_b","n os.listdir(raw_image_folder):
+                # Check if the file with the same name already exists in the destination
+                if os.path."
 "#include <bits/stdc++.h>
 using namespace std;
 int przedzial(vector<int> &v, int r) // searching for such c, so that in the interval [c - r, ","ers can fit int the interval ""height"" 2 * r
@@ -231,15 +223,13 @@ int main()
     int i = 0;
     int j = 0;
     int s = v.size();
-    int ile_wyn = 0; // how many numb","c + r) <= 2 * r
-            if (v[i] - v[j] <= 2 * r)
-            {
-                j = i + j_shift;
-                ile_wyn = j;
-                wyn = v[i] + v[j];
-            }
-        }
-        wyn = ("
+    int ile_wyn = 0; // how many numb","2 * r] the interval ""height"" 2 * r = 2 * r + 1,
+    vector<int> v(n), int r;
+    cin >> n >> r;
+    cin >> v(n - 1);
+    cout << przedzial(v, r);
+}
+int pr"
 "#include <bits/stdc++.h>
 using namespace std;
 int przedzial(vector<int> &v, int r) // searching for such c, so that in the interval [c - r, c + r] there are the most numbers from the vector v
@@ -277,11 +267,10 @@ int main()
 }","le (j < s)
     {
         if (v[j] - v[i] <= 2 * r)
-        {","le i > ile_wyn or i == n:
-        return;
-    while (i < ile_wyn)
-    {
-        if (v[i"
+        {","ght = -r;
+    for (int i = 0; i < s; i++) {
+        if (i > 0) {
+            if ("
 "#include <stdio.h>
 #include <ma"," > 1)
     {
@@ -299,12 +288,12 @@ int main()
 long long int logarytm(long long int a)
 {
     long long int acc = 0;
-    while (a","thub.h>
-#include ""c_int.h""
+    while (a","x.h>
+#include <stdint.h>
+#include <math.h>
 
-int logarytm(x) {
-    acc = 0;
-    a"
+#include <math_core.h>
+#include ""math_"
 "#include <stdio.h>
 #include <math.h>
 long long int logarytm(long long int a)
@@ -321,7 +310,8 @@ int main()
     {
         acc++;
         a /= 2;
-    }","le acc!= 0:
+    }","f acc <= a:
+        acc++;
       "
 "#include <stdio.h>
 #include <math.h>
@@ -339,9 +329,10 @@ int main()
     printf(""%lld\n"", logarytm(a));
 }","while (a > 1)
     {
-        acc++;","if (!a) {
-        acc = logarytm(a);
-       "
+        acc++;","acc = 1;
+     return acc;
+}
+long long int logary"
 "#include <stdio.h>
 #include <math.h>
 long long int logarytm(long long int a)
@@ -358,56 +349,56 @@ int main()
     long long int a;
     scanf(""%lld"", &a);
     printf(""%lld\n"", logarytm(a));
-}",long long int acc = 0;,"long int b = a + a * a;
-  printf"
+}",long long int acc = 0;,double a = 1.2 * (a -
 "def print_5_hello_worlds():
   ","o, world!"")
     print(""Hello, world!"")
     print(""Hello, world!"")","print(""Hello, world!"")
     print(""Hello, world!"")
-    print(""Hell","print(""Hello, worl"
+    print(""Hell","print(""Hello, world!"")
+    print(""H"
 def print_5_hello_wor," print(""Hello, world!"")","lds():
     print(""Hello, world!"")
     print(""Hello, world!"")
     print(""Hello, world!"")
-    print(""Hello, world!"")","nt(self):
+    print(""Hello, world!"")","d_world():
    "
 def print_5_hello_wo,"llo, world!"")
     print(""Hello, world!"")
     print(""Hello, world!"")
     print(""Hello, world!"")","rlds():
     print(""Hello, world!"")
-    print(""He","llo(world):
-    print(""hello wi"
+    print(""He","rd_world():
+    print(""Hello, wor"
 "def print_5_hello_worlds():
     print(""Hello, world!"")
     print(""Hello, ","!"")
     print(""Hello, world!"")","world!"")
     print(""Hello, world!"")
-    print(""Hello, world",World!
+    print(""Hello, world","World!"")
+    print(""Hello, World!"")
+    print(""Hello, World!"")
+    print(""Hello"
 def add_nums_,  return total,"from_1_to_5():
     total = 0
     for i in range(1, 6):
-        total += i","_to_end(start, end):
-    if start < end:
-        result = max(start, end)
-        return result
-    else:
-        return start"
+        total += i","s(arr: List[int]) -> int:
+  "
 "def add_nums_from_1_to_5():
     total = 0
     ",return total,"for i in range(1, 6):
-        total += i","total_ = 1
-    3
-    "
+        total += i","for i in range(1, 5):
+        total += int(i)
+        "
 "def add_nums_from_1_to_5():
     tota","range(1, 6):
         total += i
     return total","l = 0
-    for i in","l_nums = [i for i in range(1,"
+    for i in","n = 0
+    for i in "
 "def add_nums_from_1_to_5():
     total = 0
     for i","
     return total","in range(1, 6):
-        total += i","in range(5):
-        total += i * 2"
+        total += i","in range(1, 6):
+        total += i * 5"
