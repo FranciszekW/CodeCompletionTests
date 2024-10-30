@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int przedzial(vector<int> &v, int r) // szukamy, takiego c, żeby w przedziale [c - r, c + r] zmieścić jak najwięcej liczb z v
+int przedzial(vector<int> &v, int r) // searching for such c, so that in the interval [c - r, c + r] there are the most numbers from the vector v
 {
     sort(v.begin(), v.end());
     int i = 0;
     int j = 0;
     int s = v.size();
-    int ile_wyn = 0; // ile najwięcej liczb może się zmieścić w przedziale o "wysokości" 2 * r
-    int wyn = 0;     // szukane c
+    int ile_wyn = 0; // how many numbers can fit int the interval "height" 2 * r
+    int wyn = 0;     // the middle of the interval
     while (j < s)
     {
         if (v[j] - v[i] <= 2 * r)
