@@ -4,21 +4,19 @@ Prefix,Middle,Suffix
      * prints out all primes smaller than max
      * @param max upper bound for finding primes
      */
-    private","= new Eratostenes(Integer.parseInt(max));
-    for (int i = 0; i < max; ++i) {
-        int i;
-        for (int j = 0; j < i; ++j) {
-            while (isPrime[j]) {
-                if (isPrime[j]) {
-                    print(i, end = "" "");
-                    System.out.println("" + "", j);
-                } else {
-                    print(i, end = """");
-                }
+    private static void printPrimes(int max) {
+        boolean isPrime[] = new boolean[max];
+        for (int i = 2; i < max; ++i) {
+            isPrime[i] = true; // numbers bigger than 1 have a potential to be prime
+        }
+        for (int i = 2; i * i < max; ++i) {
+ ","if (isPrime[i]) {
+                System.out.print(i);
+                System.out.print(' ');
             }
         }
     }
-    public static int","++k) { // we jump by i crossing out all complex numbers
+    public static void getPrime(String[] args","rossing out all complex numbers
                     isPrime[i * i + i * k] = false;
                 }
             }
@@ -40,20 +38,9 @@ Prefix,Middle,Suffix
      * prints out all primes smaller than max
      * @param max upper bound for finding primes
      */
-    private static void printPrimes(int max) {
-   ","// The maximum number of primes to print, ie. max**2 is too big.
-        // This function does not count itself, and only prints out prime numbers that are
-        // at least max that are prime.
-        for (int i = 0; i < max; ++i) {
-            for (int j = 0; j < i; ++j) {
-                System.out.println(System.str(k),"," k * i < max; ++k) { // we jump by i crossing out all complex numbers
-                    isPrime[i * i + i * k] = false;
-                }
-            }
-        }
-        for (int i = 0; i < max; ++i) {
-            if (isPrime[i]) {
-                System.out.print(i);
+    private static ","public class FivePrimePrimes {
+        int primes = Integer.parseInt(args[0]);
+        System.out.pr","int(i);
                 System.out.print(' ');
             }
         }
@@ -73,66 +60,9 @@ Prefix,Middle,Suffix
         for (int i = 2; i < max; ++i) {
             isPrime[i] = true; // numbers bigger than 1 have a potential to be prime
         }
-        for (int i = 2; i * i < max; ++i) {
-           ","i = (i + i) * 2;
-            i = min(i, max);
-            while (i < max) {
-                isPrime[i] = false;
-                if (isPrime[i])","ll complex numbers
-                    isPrime[i * i + i * k] = false;
-                }
-            }
-        }
-        for (int i = 0; i < max; ++i) {
-            if (isPrime[i]) {
-                System.out.print(i);
-                System.out.print(' ');
-            }
-        }
-    }
-    public static void main(String[] args) {
-        int max = Integer.parseInt(args[0]);
-        printPrimes(max);
-    }
-}"
-"public class Eratostenes {
-    /**
-     * prints out all primes smaller than max
-     * @param max upper bound for finding primes
-     */
-    private static void printPrim",er,"r (int i = 0; i < max; ++i) {
-            if (isPrime[i]) {
-                System.out.print(i);
-                System.out.print(' ');
-            }
-        }
-    }
-    public static void main(String[] args) {
-        int max = Integer.parseInt(args[0]);
-        printPrimes(max);
-    }
-}"
-"public class Eratostenes {
-    /**
-     * prints out all primes smaller than max
-     * @param max upper bound for finding primes
-     */
-    private static void printPrimes(in","g max, Integer input) {
-        for (int i = 0; i < max; ++i) {
-            if (isPrime[i]) {
-                System.out.print(i);
-                System.out.print(' ');
-            }
-        }
-    }
-
-    private static void isPrime(Integer[] primes, Integer[] base) {
-       "," for (int i = 0; i < max; ++i) {
-            if (isPrime[i]) {
-                System.out.print(i);
-                System.out.print(' ');
-            }
-        }
+        for (int i = 2; i *","+1; ++i) {
+            boolean isPrime[i] = false;
+","        }
     }
     public static void main(String[] args) {
         int max = Integer.parseInt(args[0]);
@@ -144,14 +74,19 @@ global umax
 ; Parameters in edi, esi registers
 smax:
     cmp edi, esi
-    cmovl eax, e","x, b, cmovnb esi, esi ; cmov","b eax, esi ; if edi < esi then return esi, b stands for BELOW
+    cmovl eax, esi","cmovb eax, esi ; if edi < esi then return esi, b stands for BELOW
+    cmovnb eax, edi ; else edi
+    ret ; result in eax","si
+    cmovb eax, esi ; if edi < esi then return esi, b stands for BELOW
     cmovnb eax, edi ; else edi
     ret ; result in eax"
 "global smax
 global umax
 ; Parameters in edi, esi registers
-sm","; 0 to 65535, 1 to","    cmovl eax, esi ; if edi < esi then return esi
-    cmovnl eax, edi ; else edi
+smax:
+    cmp edi, esi
+    cmovl eax, esi ; if ","else ret then ret ; else edi
+    cmovbn eax, esi ; if edi < es","else edi
     ret ; result in eax
 umax:
     cmp edi, esi
@@ -160,119 +95,109 @@ umax:
     ret ; result in eax"
 "global smax
 global umax
+; Parameters in edi, ",e,"W
+    cmovnb eax, edi ; else edi
+    ret ; result in eax"
+"global smax
+global umax
 ; Parameters in edi, esi registers
 smax:
     cmp edi, esi
-    cmovl eax, esi ; if edi < esi then r","esult = b
-    cmovnb eax, esi ; else edi
+    cmovl eax, esi ; if edi < esi then return esi
+    cmovnl eax, edi ; else edi
+","b:
+    movq rax, rax ; movr rax, rax
+    ret ; result in eax, rax","i ; if edi < esi then return esi, b stands for BELOW
+    cmovnb eax, edi ; else edi
+    ret ; result in eax"
+"global smax
+global umax
+; Parameters in edi, esi","t and eax
 esi:
-    cmp esi, edi
-b:
-    cmp b, edi","  cmovb eax, esi ; if edi < esi then return esi, b stands for BELOW
-    cmovnb eax, edi ; else edi
-    ret ; result in eax"
-"global smax
-global umax
-; Parameters in edi, esi registers
-smax:
-    cmp edi, esi
-    cmovl eax, esi ; if edi < esi then retu","rn smax
-    cmovl eax, esi
+    cmovb eax, esi ; if esi < esi then return esi, b stands for BELOW
+    cmovnb eax, esi ; else esi","lse edi
     ret ; result in eax
-    cmovnb eax, esi
-
-# return the number of free registers, e.g., 2,26
-def ret():
-    global smax
-    rslt","eturn esi, b stands for BELOW
-    cmovnb eax, edi ; else edi
-    ret ; result in eax"
-"global smax
-global umax
-; Parameters ","===
-
-#cmovb eax, b; b is already in 32-bit mode
-#cmovnb eax, b; b is already in 32-bit mode
-
-#cmovn eax, b, b_length is not 64-bit","x:
+umax:
     cmp edi, esi
     cmovb eax, esi ; if edi < esi then return esi, b stands for BELOW
     cmovnb eax, edi ; else edi
     ret ; result in eax"
-"global smax
-global umax
-; Parameters in edi, esi regi","ng reg, r0 regi, ","    cmovnb eax, edi ; else edi
-    ret ; result in eax"
+"import os
+import shutil
+# Function to move images from raw_images to data and raise error on collisions
+","# Input and output folders
+raw_images_dir = '/home/hugs/Downloads/raw_images'
+images_dir = '/home/hugs/Downloads/raw_images'
+brand = 'Mystery'
+# Move images in this folder to raw_images_dir
+def","aw_images_dir, brand)
+        print(f""Moving images from: {raw_brand_folder}"")
+        data_brand_folder = os.path.join(images_dir, brand)"
+"import os
+import shutil
+# Function to move images from raw_images to data ","in raw_images_dir
+def move_image(raw_images_dir, images_dir, brand):
+    for f in os.listdir(raw_images_dir):
+        shutil.move(os.path.join(raw_images_","raw_images_dir):
+        raw_brand_folder = os.path.join(raw_images_dir, brand)
+        print(f""Moving images from: {raw_brand_folder}"")
+        data_brand_folder = os.path.join(images_dir, brand)"
 "import os
 import shutil
 # Function to move images from raw_images to data and raise error on collisions
 def move_images_with_collision_check(raw_images_dir, images_dir):
-    # Iterate through each brand folder i","f all the files found in the folder
-    for dir_name in os.listdir(raw_images_dir):
-        # Iterate through each file in the folder
-        for file_name in os.listdir(os.path.join(raw_images_dir, dir_name)):
-            # Check","      data_brand_folder = os.path.join(images_dir, brand)"
-"import os
-import shutil
-# Function to move images from raw_images ","to processed_images
-# It is"," raise error on collisions
-def move_images_with_collision_check(raw_images_dir, images_dir):
-    # Iterate through each brand folder in the raw_images directory
-    for brand in os.listdir(raw_images_dir):
-        raw_brand_folder = os.path.join(raw_images_dir, brand)
-        print(f""Moving images from: {raw_brand_folder}"")
-        data_brand_folder = os.path.join(images_dir, brand)"
+    # Iterate through each brand folder in the raw_images","folder
+    #  and copy each image in the data folder with its collision
+    for raw_image_folder, images in os.walk(raw_images_dir):
+        for image_name in images:
+            # If a new image is available
+            #  then move it","  data_brand_folder = os.path.join(images_dir, brand)"
 "import os
 import shutil
 # Function to move images from raw_images to data and raise error on collisions
-def move_images_with_collision_c","om_images(raw_images_dir, images_dir, images):
-    # Iterate over directory, if files are found, move images","ory
-    for brand in os.listdir(raw_images_dir):
-        raw_brand_folder = os.path.join(raw_images_dir, brand)
-        print(f""Moving images from: {raw_brand_folder}"")
-        data_brand_folder = os.path.join(images_dir, brand)"
-"import os
-import shutil
-# Function to move images from raw_images to data and raise error on collisions
-def move_images_with_collision_check(raw_images_dir","0
-        if os.path"," images_dir):
-    # Iterate through each brand folder in the raw_images directory
+def move_images_with_collision_check(raw_images_dir, images_dir)",":
+    if os.path.isdir(raw_","ch brand folder in the raw_images directory
     for brand in os.listdir(raw_images_dir):
         raw_brand_folder = os.path.join(raw_images_dir, brand)
         print(f""Moving images from: {raw_brand_folder}"")
         data_brand_folder = os.path.join(images_dir, brand)"
 "# Ensure we are dealing with directories
         if os.path.isdir(raw_brand_folder):
-            # Check if the correspondin","d directory exists
-            if not os.path.isdir(data_brand_folder):
-                os.makedirs(data_brand_folder)
-                # Append data to a brand folder"," in data: {data_brand_folder}"")
+            # Check if the corresponding data brand fol","der exists
+            if os.path.exists(data_brand_folder):
+                raise Exception(
+                    f""The specified data brand folder exists. It should ""
+                    f""be a directory where you expect to","older}"")
+                os.makedirs(data_brand_folder)"
+"# Ensure we are dealing with directories
+        if os.path.isdir(raw_brand","name):
+            print(f""Brand folder not found: {raw_brandname}"")
+            return
+        if","irectory
+            if not os.path.exists(data_brand_folder):
+                print(f""Creating brand folder in data: {data_brand_folder}"")
                 os.makedirs(data_brand_folder)"
 "# Ensure we are dealing with directories
         if os.path.isdir(raw_brand_folder):
-            # Check if the corresponding data brand","_folder is actually in the right place.
-            raw_brand_folder_path = os.path.join(data_brand_folder, raw_brand_folder)
-            if os.path.isdir(",     os.makedirs(data_brand_folder)
+            # Check if ","the brand folder exists and we have it
+            assert os.path.isfile(raw_brand_folder), \
+                'The folder {} is not a directory'.format(raw_brand_folder)
+        else:
+ ",               os.makedirs(data_brand_folder)
+"# Ensure we are dealing with directories
+        if","os.path.exists(brand_folder):
+   ",             os.makedirs(data_brand_folder)
 "# Ensure we are dealing with directories
         if os.path.isdir(raw_brand_folder):
-            # Check if the corres","ion folder exists
-            if not os.path.isdir(data_brand_folder):
-                os.makedirs(data_brand_folder)
-                for root, dirs, files in os."," data: {data_brand_folder}"")
-                os.makedirs(data_brand_folder)"
-"# Ensure we are dealing with directories
-        if os.path.isdir(raw_brand_folder):
-         ","data_brand_folder = os.path.join(raw_brand_folder, brand_folder)
-
-            # If it doesn't exist, we create it and","(f""Creating brand folder in data: {data_brand_folder}"")
+","brand_folder = os.path.join(raw_brand_folder, brand_","ry
+            if not os.path.exists(data_brand_folder):
+                print(f""Creating brand folder in data: {data_brand_folder}"")
                 os.makedirs(data_brand_folder)"
 "# Iterate through the files in the raw brand folder
             for filename in os.listdir(raw_brand_folder):
-             ","if not filename.startswith('meta_image_'):
-                    # Open the image for readability
-                    raw_image = cv2.imread(raw_brand_folder + '/' + filename)
-                    # If no color image is given, make sure to set color value
-                    if raw_image"," destination
+                raw_image_path = os.path.join(ra","nd_brand_folder, filename)
+                # Check if a file with the same name already","= os.path.join(data_brand_folder, filename)
+                # Check if a file with the same name already exists in the destination
                 if os.path.exists(data_image_path):
                     raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
                 # Move the file to the corresponding brand folder in the data directory
@@ -280,37 +205,17 @@ def move_images_with_collision_check(raw_images_dir","0
 "# Iterate through the files in the raw brand folder
             for filename in os.listdir(raw_brand_folder):
                 raw_image_path = os.path.join(raw_brand_folder, filename)
-                data_image_path = os.path.join(data_","folder, filename)
-                with Image.open(raw_image_path) as img:
-                    img.load()
-                    img = img","ion
+                data_image_path = os.path.joi","n(raw_brand_folder, filename + '_data.jpg')","  # Check if a file with the same name already exists in the destination
                 if os.path.exists(data_image_path):
                     raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
                 # Move the file to the corresponding brand folder in the data directory
                 shutil.move(raw_image_path, data_image_path)"
 "# Iterate through the files in the raw brand folder
             for filename in os.listdir(raw_brand_folder):
-                raw_image_path = os.path.join(raw_brand_f","older, filena","name)
+                raw_image_path = os.path.join(raw_brand_folder, filename)
                 data_image_path = os.path.join(data_brand_folder, filename)
-                # Check if a file with the same name already exists in the destination
+                # Check if a file with the same ",is," exists in the destination
                 if os.path.exists(data_image_path):
-                    raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
-                # Move the file to the corresponding brand folder in the data directory
-                shutil.move(raw_image_path, data_image_path)"
-"# Iterate through the files in the raw brand folder
-            for filename in os.listdi","r(raw_image_folder, pattern=""*_bmp_""):
-                # Check if the file exists in the destination folder
-                if os.path.exists(filename","me)
-                data_image_path = os.path.join(data_brand_folder, filename)
-                # Check if a file with the same name already exists in the destination
-                if os.path.exists(data_image_path):
-                    raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
-                # Move the file to the corresponding brand folder in the data directory
-                shutil.move(raw_image_path, data_image_path)"
-"# Iterate through the files in the raw brand folder
-            for filename in os.listdir(raw_brand_folder):
-                raw_image_path = os.pat","h.join(raw_brand_folder, filename)
-                ","if os.path.exists(data_image_path):
                     raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
                 # Move the file to the corresponding brand folder in the data directory
                 shutil.move(raw_image_path, data_image_path)"
@@ -321,14 +226,15 @@ int przedzial(vector<int> &v, int r) // searching for such c, so that in the int
     sort(v.begin(), v.end());
     int i = 0;
     int j = 0;
-    int s = v.size()",";
-    int c = v[i];
-    int v1 = v[j];
-    wyn = 0;
-    while(c < r)
-        if(v1 > v)
+    int s = v.size();
+    int ile_wyn = 0; // how many numbers can fit int the interval ""height"" 2 * r
+    int ","ile_wyn = 0; // how many numbers can fit int the interval ""height"" 2 * r
+    int i","    if (v[j] - v[i] <= 2 * r)
         {
-            v1"," = (v[i] + v[j]) / 2;
+            if (j - i >= ile_wyn)
+            {
+                ile_wyn = j - i;
+                wyn = (v[i] + v[j]) / 2;
             }
             j++;
         }
@@ -352,16 +258,16 @@ int main()
 }"
 "#include <bits/stdc++.h>
 using namespace std;
-int przedzial(vector<int> &v, int r) // searching for such c, so that in the interval [c - r, c + r] there are the most numbers from the vector v
-{
-    sort(v.begin(), v.end());
-    int i = 0;
-    int j = 0;
-    int s = v.size();
-    int ile_wyn = 0; // how many numbers can fit int the interval ""height"" 2 * r
-   ","if (s == 0)
-        return 0;
-    for (int i = 0; i < s; ++i)","    if (v[j] - v[i] <= 2 * r)
+int przedzial(vector<int> &v, int r) // searching for such c, so that in the interval [c - r, c + r] there are the most numbers from the v","omplex:
+   (2 * v[i] - v[j]) / 2 <= r;
+    int ilen = 0;     // the upper half of the interval
+    for (int &v : v)
+    {
+        if (v[i] - v","t int the interval ""height"" 2 * r
+    int wyn = 0;     // the middle of the interval
+    while (j < s)
+    {
+        if (v[j] - v[i] <= 2 * r)
         {
             if (j - i >= ile_wyn)
             {
@@ -396,76 +302,19 @@ int przedzial(vector<int> &v, int r) // searching for such c, so that in the int
     int i = 0;
     int j = 0;
     int s = v.size();
-    int ile_wyn = 0; // how many numbers can fit int the interval ""height"" 2 * r
-    int wyn =","int(s / (r + ile_wyn));
-    int ifile = v.begin();
-    while (ifile < v.end())
+    int ile_wyn = 0; // how many numbers can fit int ","the interval
+    while (i < s)
     {
-        int wyn++;
-        ifile += ile_wyn;
-        else
- ","           j++;
-        }
-        else
-        {
-            i++;
-        }
-    }
-    return wyn;
-}
-int main()
-{
-    int n, r;
-    cin >> n >> r;
-    vector<int> v(n);
-    for (int &el : v)
+        if","r
+    int wyn = 0;     // the middle of the interval
+    while (j < s)
     {
-        cin >> el;
-    }
-    cout << przedzial(v, r);
-}"
-"#include <bits/stdc++.h>
-using namespace std;
-int przedzial(vector<int> &v, int r) // searching for such c, so that in the interval [c - r, c + r] there are the most numbers from the vector v
-{
-    sort(v.begin(), v.end());
-    int i = 0;
-    int j = 0;
-    int s = v.size();
-    int ile_wyn = 0; // how many numbers can fit int the interval ""heig","ht""
-    int ile_jyn = 0; // how many numbers can fit int the interval ""heigth""
-    for (int &el : v) {
-        if (j < s)
+        if (v[j] - v[i] <= 2 * r)
         {
-            if (el - v[j])!= 0;
+            if (j - i >= ile_wyn)
             {
-                if (el + v[j])!= r;
-                {
-                    cout << ""Case 1: Increasing vector with r = {} but in interval [c - r, c + r] is zero.  Found r = {} but in interval [c - r, c + r]."".format(r, c -"," int n, r;
-    cin >> n >> r;
-    vector<int> v(n);
-    for (int &el : v)
-    {
-        cin >> el;
-    }
-    cout << przedzial(v, r);
-}"
-"#include <bits/stdc++.h>
-using namespace std;
-int przedzial(vector<int> &v, int r) // searching for such c, so that in the interval [c - r, c + r] there are the most numbers from the vector v
-{
-    sort(v.begin(), v.end());
-    int i = 0;
-    int j = 0;
-    int s = v.size();
-    int ile_wyn = 0; // how many numb","e to keep (wyn is the size of the array).
-    i = s - 1;
-    j = 0;
-    int ile_xyn = 0; // how many elements to keep (xyn is the size of the array).
-    for (int k = 0; k < n; k++)
-        if (v[k] < v[k + 1])
-        {
-            ile_","n = (v[i] + v[j]) / 2;
+                ile_wyn = j - i;
+                wyn = (v[i] + v[j]) / 2;
             }
             j++;
         }
@@ -487,60 +336,71 @@ int main()
     }
     cout << przedzial(v, r);
 }"
-"#include <bits/stdc++.h>
-using namespace std;
-int przedzial(vector<int> &v, int r) // searching for such c, so that in the interval [c - r, c + r] there are the most numbers from the vector v
-{
-    sort(v.begin(), v.end());
-    int i = 0;
-    int j = 0;
-    int s = v.size();
-    int ile_wyn = 0; // how many numbers can fi","nd (1 - ile_wyn)
-    for (int i = 0; i < s; i++)
+"#include <stdio.h>
+#include <math.h>
+long lo","wers.h
+
+#ifdef __cplusplus
+extern ""C"" {
+    std::error","ng long int acc = 0;
+    while (a > 1)
     {
- ","      i++;
-        }
+        acc++;
+        a /= 2;
     }
-    return wyn;
+    return acc;
 }
 int main()
 {
-    int n, r;
-    cin >> n >> r;
-    vector<int> v(n);
-    for (int &el : v)
-    {
-        cin >> el;
-    }
-    cout << przedzial(v, r);
+    long long int a;
+    scanf(""%lld"", &a);
+    printf(""%lld\n"", logarytm(a));
 }"
-"#include <bits/stdc++.h>
-using namespace std;
-int przedzial(vector<int> &v, int r) // searching for such c, so that in the interval [c - r, c + r] there are the most numbers from the vector v
-{
-    sort(v.begin(), v.end());
-    int i = 0;
-    int j = 0;
-    in","t el = v[i];
-    while(j < el)
-        {
-            wyn = (vector<int>&el[j]);
-       ","     }
-        else
-        {
-            i++;
-        }
-    }
-    return wyn;
-}
-int main()
-{
-    int n, r;
-    cin >> n >> r;
-    vector<int> v(n);
-    for (int &el : v)
-    {
-        cin >> el;
-    }
-    cout << przedzial(v, r);
+"#include <stdio.h>
+#include <math.h>
+long long i","mport double a;
+    scanf(""%lld"", &a);
+","    long long int a;
+    scanf(""%lld"", &a);
+    printf(""%lld\n"", logarytm(a));
 }"
+"#include <stdio.h>
+#include <math.h>
+long long int logarytm(long long int a)
+{
+    long lo","g /var/log/ld.c
+    printf(""%lld\n"", log);
+  ","  scanf(""%lld"", &a);
+    printf(""%lld\n"", logarytm(a));
+}"
+"def print_5_hello_worlds():
+    print(""Hello, world!"")
+    p","rint(""Hello, world!"")
+    pr","int(""Hello, world!"")"
+def print_5_hello_worl,"e(self):
+   "," print(""Hello, world!"")
+    print(""Hello, world!"")
+    print(""Hello, world!"")"
+def add_nums_from_1_to_,"s(nums: list, i: int) -> int:
+    total = 0
+    for"," 6):
+        total += i
+    return total"
+def add_nums,"():
+    total = 0
+    for i in range(2, 11):
+        total += i
+","
+    return total"
+"def add_nums_from_1_to_5():
+   ","total = 0
+        for i in range","(1, 6):
+        total += i
+    return total"
+def add_nums_from_1_to_5(),":
+    total = 0
+    for i in range(1, ","6):
+        total += i
+    return total"
+def add_nums_from_1_to_5,"0():
+  ",  return total
