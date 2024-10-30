@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 int przedzial(vector<int> &v, int r) // searching for such c, so that in the interval [c - r, c + r] there are the most numbers from the vector v
 {
     sort(v.begin(), v.end());
