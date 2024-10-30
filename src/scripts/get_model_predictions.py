@@ -1,28 +1,37 @@
 import pandas as pd
-from transformers.models.pop2piano.convert_pop2piano_weights_to_hf import model
 
 df = pd.read_csv('../../examples_dataset.csv')
 
-from transformers import AutoTokenizer, AutoModel
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Load the model and tokenizer
-model_name = "bigcode/tiny_starcoder"
+model_name = "bigcode/tiny_starcoder_py"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModel.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
 
 import torch
-def generate_middle_text(prefix, suffix, mid_length=50):
-    input_text = prefix + tokenizer.eos_token + suffix
+
+
+def generate_middle_text(prefix, suffix, mid_length=100):
+    # Prepare input text with a placeholder for model to know where it should generate the middle text
+    input_text = f"<fim_prefix>{prefix}<fim_suffix>{suffix}<fim_middle>"
     input_ids = tokenizer.encode(input_text, return_tensors='pt')
 
     with torch.no_grad():
-        # 2 * mid_length to allow some flexibility in the generated middle text
-        output_ids = model.generate(input_ids, max_length=len(input_ids[0]) + 2 * mid_length, pad_token_id=tokenizer.eos_token_id)
+        output_ids = model.generate(
+            input_ids,
+            # 2 * mid_length to allow some flexibility in generating the middle text
+            max_length=len(input_ids[0]) + 2 * mid_length,
+            pad_token_id=tokenizer.eos_token_id,
+            attention_mask=input_ids.ne(tokenizer.eos_token_id))
 
     completion = tokenizer.decode(output_ids[0], skip_special_tokens=True)
-    generated_text = completion[len(prefix):completion.rfind(suffix)].strip()
+    # Extract the middle text from the completion
+    # generated_text = completion[len(prefix):completion.rfind(suffix)].strip()
 
-    return generated_text
+    print(completion)
+    return completion
+
 
 # Generate completions for each example
 completions = []
