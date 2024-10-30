@@ -7,15 +7,9 @@ completions_df = pd.read_csv('../../tiny_starcoder_py.csv')
 # Define the model name (e.g., "tiny_starcoder")
 model_name = "tiny_starcoder"
 
-# Create ratings dataframe if it doesn't exist
-try:
-    ratings_df = pd.read_csv('ratings.csv')
-except FileNotFoundError:
-    ratings_df = pd.DataFrame(index=range(len(completions_df)))
-
 # Add model name as a column if not already in ratings_df
-if model_name not in ratings_df.columns:
-    ratings_df[model_name] = None
+if 'Manual rating' not in completions_df.columns:
+    completions_df['Manual rating'] = None
 
 # Loop over each example and prompt for rating
 for index, (example_row, completion_row) in enumerate(
@@ -24,10 +18,10 @@ for index, (example_row, completion_row) in enumerate(
     print("\n---------------------------")
     print(f"Example {index + 1}")
     print("---------------------------")
-    print("Prefix:\n", example_row.Prefix)
-    print("Generated Completion:\n", completion_row.Middle)
-    print("Actual Middle (Target Completion):\n", example_row.Middle)
-    print("Suffix:\n", example_row.Suffix)
+    print("Prefix:\n", example_row.Prefix, "\n")
+    print("Generated Completion:\n", completion_row.Predicted, "\n")
+    print("Actual Middle (Target Completion):\n", example_row.Middle, "\n")
+    print("Suffix:\n", example_row.Suffix, "\n")
 
     # Prompt for a rating
     while True:
@@ -41,9 +35,9 @@ for index, (example_row, completion_row) in enumerate(
             print("Invalid input. Please enter an integer.")
 
     # Save the rating to the DataFrame
-    ratings_df.at[index, model_name] = rating
+    completions_df.at[index, 'Manual rating'] = rating
 
     # Save ratings after each input to prevent data loss
-    ratings_df.to_csv('ratings.csv', index=False)
+    completions_df.to_csv('ratings.csv', index=False)
 
 print("\nAll ratings have been saved to ratings.csv.")
