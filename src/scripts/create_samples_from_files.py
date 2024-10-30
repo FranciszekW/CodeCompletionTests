@@ -38,8 +38,10 @@ def save_examples_to_csv(examples, output_file):
         for example in examples:
             writer.writerow(example)
 
+MIN_SAMPLES, MAX_SAMPLES = 2, 5
+
 def main():
-    files = ['Eratostenes.java', 'max.asm', 'move_images.py', 'sliding_window.cpp']
+    files = ['Eratostenes.java', 'max.asm', 'move_images.py', 'sliding_window.cpp', 'log.c', 'simple.py']
     all_examples = []
     dataset_path = os.path.join('..', '..', 'examples_dataset.csv')
 
@@ -49,7 +51,7 @@ def main():
             blocks = extract_code_blocks(file_path)
             print(f"Processing code blocks from {file_path}...\n")
             for i, block in enumerate(blocks):
-                num_examples = random.randint(4, 8) # For each block, generate 4-8 examples
+                num_examples = random.randint(MIN_SAMPLES, MAX_SAMPLES) # For each block, generate 4-8 examples
                 for j in range(num_examples):
                     prefix, middle, suffix = split_code_block(block)
                     all_examples.append((prefix, middle, suffix))
