@@ -9,9 +9,10 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Load the model and tokenizer
-model_name = "bigcode/tiny_starcoder_py"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
+model_name = "tiny_starcoder_py"
+model_from = "bigcode/" + model_name
+tokenizer = AutoTokenizer.from_pretrained(model_from)
+model = AutoModelForCausalLM.from_pretrained(model_from).to(device)
 
 
 def generate_middle_text(prefix, suffix, num_mid_tokens=100):
@@ -46,11 +47,11 @@ def main():
         prefix, middle, suffix = row['Prefix'], row['Middle'], row['Suffix']
         num_mid_tokens = len(tokenizer.tokenize(middle))
         generated_middle = generate_middle_text(prefix, suffix, num_mid_tokens + 5) # Add some buffer tokens
-        completions.append((prefix, generated_middle, suffix))
+        completions.append((middle, generated_middle))
 
     # Save the completions to a new CSV file
-    output_df = pd.DataFrame(completions, columns=['Prefix', 'Middle', 'Suffix'])
-    output_df.to_csv('../../completions_dataset.csv', index=False)
+    output_df = pd.DataFrame(completions, columns=['Correct', 'Predicted'])
+    output_df.to_csv(f'../../{model_name}.csv', index=False)
 
 if __name__ == '__main__':
     main()
