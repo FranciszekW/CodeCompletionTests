@@ -17,9 +17,10 @@ def split_code_block(code_block):
     total_length = len(code_block)
 
     # Randomly choose two split points
-    split_point1 = random.randint(0, total_length - 10)  # Don't give too large prefix
+    split_point1 = random.randint(0, total_length - 20)  # Don't give too large prefix
     split_point2 = random.randint(split_point1,
-                                  total_length)  # Ensure the second split point is after the first
+                                  total_length - 10)  # Ensure the second split point is after the first
+                                                      # and not too close to the end
 
     # Create prefix, middle, and suffix based on the split points
     prefix = code_block[:split_point1]
