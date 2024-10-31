@@ -49,7 +49,7 @@ input segments for its completion tasks.
 ### Running the Model and Getting Predictions
 
 With the dataset ready in `examples.csv`, I created a script called
-`get_model_predictions.py`—the name says it all :). I first thought of
+`get_model_predictions.py` - the name says it all :). I first thought of
 using several different models but soon realized that most were too
 large for my PC. So, I downloaded the smaller `tiny_starcoder` model,
 which indeed was easier and faster to work with, especially after
