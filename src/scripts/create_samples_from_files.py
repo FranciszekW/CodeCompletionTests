@@ -43,7 +43,7 @@ MIN_SAMPLES, MAX_SAMPLES = 2, 5
 def main():
     files = ['Eratostenes.java', 'max.asm', 'move_images.py', 'sliding_window.cpp', 'log.c', 'simple.py']
     all_examples = []
-    dataset_path = os.path.join('..', '..', 'examples_dataset.csv')
+    dataset_path = os.path.join('..', '..', 'data', 'examples_dataset.csv')
 
     for file in files:
         file_path = os.path.join('..', '..', 'sample_files', file)

@@ -1,15 +1,15 @@
 import pandas as pd
 
 # Load the datasets
-examples_df = pd.read_csv('../../examples_dataset.csv')
-completions_df = pd.read_csv('../../tiny_starcoder_py.csv')
+examples_df = pd.read_csv('../../data/examples_dataset.csv')
+completions_df = pd.read_csv('../../data/tiny_starcoder_py.csv')
 
 # Define the model name (e.g., "tiny_starcoder")
 model_name = "tiny_starcoder"
 
 # Create metrics dataframe if it doesn't exist
 try:
-    metrics_df = pd.read_csv('tiny_starcoder_metrics.csv')
+    metrics_df = pd.read_csv('../../data/tiny_starcoder_metrics.csv')
 except FileNotFoundError:
     metrics_df = pd.DataFrame(index=range(len(completions_df)))
 
@@ -44,6 +44,6 @@ for index, (example_row, completion_row) in enumerate(
     metrics_df.at[index, 'Manual'] = rating
 
     # Save metrics after each input to prevent data loss
-    metrics_df.to_csv('../../tiny_starcoder_metrics.csv', index=False)
+    metrics_df.to_csv('../../data/tiny_starcoder_metrics.csv', index=False)
 
 print("\nAll metrics have been saved to tiny_starcoder_metrics.csv.")

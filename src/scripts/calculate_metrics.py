@@ -5,8 +5,8 @@ from rouge import Rouge
 import editdistance
 
 # Load the completions dataset
-completions_df = pd.read_csv('../../tiny_starcoder_py.csv')
-results_df = pd.read_csv('../../tiny_starcoder_metrics.csv')
+completions_df = pd.read_csv('../../data/tiny_starcoder_py.csv')
+results_df = pd.read_csv('../../data/tiny_starcoder_metrics.csv')
 
 # Initialize metrics
 rouge = Rouge()
@@ -57,6 +57,6 @@ results_df['ROUGE-L'] = rouge_l_scores
 results_df['Edit Distance'] = edit_distance_scores
 
 # Append the results to metrics csv
-results_df.to_csv('../../tiny_starcoder_metrics.csv', index=False)
+results_df.to_csv('../../data/tiny_starcoder_metrics.csv', index=False)
 
 print("Metrics have been calculated and saved to tiny_starcoder_metrics.csv.")

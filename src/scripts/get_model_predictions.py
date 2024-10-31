@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('../../examples_dataset.csv')
+df = pd.read_csv('../../data/examples_dataset.csv')
 
 import torch
 
@@ -51,7 +51,7 @@ def main():
 
     # Save the completions to a new CSV file
     output_df = pd.DataFrame(completions, columns=['Actual', 'Predicted'])
-    output_df.to_csv(f'../../{model_name}.csv', index=False)
+    output_df.to_csv(f'../../data/{model_name}.csv', index=False)
 
 if __name__ == '__main__':
     main()
