@@ -7,9 +7,15 @@ completions_df = pd.read_csv('../../tiny_starcoder_py.csv')
 # Define the model name (e.g., "tiny_starcoder")
 model_name = "tiny_starcoder"
 
-# Add model name as a column if not already in ratings_df
-if 'Manual rating' not in completions_df.columns:
-    completions_df['Manual rating'] = None
+# Create metrics dataframe if it doesn't exist
+try:
+    metrics_df = pd.read_csv('tiny_starcoder_metrics.csv')
+except FileNotFoundError:
+    metrics_df = pd.DataFrame(index=range(len(completions_df)))
+
+# Add model name as a column if not already in metrics_df
+if model_name not in metrics_df.columns:
+    metrics_df['Manual'] = None
 
 # Loop over each example and prompt for rating
 for index, (example_row, completion_row) in enumerate(
@@ -35,9 +41,9 @@ for index, (example_row, completion_row) in enumerate(
             print("Invalid input. Please enter an integer.")
 
     # Save the rating to the DataFrame
-    completions_df.at[index, 'Manual rating'] = rating
+    metrics_df.at[index, 'Manual'] = rating
 
-    # Save ratings after each input to prevent data loss
-    completions_df.to_csv('ratings.csv', index=False)
+    # Save metrics after each input to prevent data loss
+    metrics_df.to_csv('../../tiny_starcoder_metrics.csv', index=False)
 
-print("\nAll ratings have been saved to ratings.csv.")
+print("\nAll metrics have been saved to tiny_starcoder_metrics.csv.")

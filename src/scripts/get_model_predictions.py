@@ -46,11 +46,11 @@ def main():
     for index, row in df.iterrows():
         prefix, middle, suffix = row['Prefix'], row['Middle'], row['Suffix']
         num_mid_tokens = len(tokenizer.tokenize(middle))
-        generated_middle = generate_middle_text(prefix, suffix, num_mid_tokens + 5) # Add some buffer tokens
-        completions.append((prefix, suffix, middle, generated_middle))
+        generated_middle = generate_middle_text(prefix, suffix, num_mid_tokens + 15) # Add some flexibility
+        completions.append((middle, generated_middle))
 
     # Save the completions to a new CSV file
-    output_df = pd.DataFrame(completions, columns=['Prefix', 'Suffix', 'Correct middle', 'Predicted middle'])
+    output_df = pd.DataFrame(completions, columns=['Actual', 'Predicted'])
     output_df.to_csv(f'../../{model_name}.csv', index=False)
 
 if __name__ == '__main__':
