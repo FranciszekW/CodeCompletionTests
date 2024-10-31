@@ -1,0 +1,262 @@
+Actual,Predicted
+"nt i = 2; i * i < max; ++i) {
+            if (isPrime[i]) {
+                for (int k = 0; i * i + k * i < max; ++k) { // we jump by i crossing out all complex numbers
+                    isPrime[i * i + i * k] = false;
+                }
+            }
+        }
+        for (int i = 0; i < max; ++i) {
+            if (isPrime[i]) {
+                System.out.print(i);
+                System.out.print(' ');
+            }","n = 1; n < max; ++n) {
+            boolean isPrime[i"
+"private static void printPrimes(int max) {
+        boolean isPrime[] = new boolean[max];
+        for (int i = 2; i < max; ++i) {
+            isPrime[i] = true; // numbers bigger than 1 have a potential to be prime
+        }
+        for (int i = 2; i * i < max; ++i) {
+            if (isPrime[i]) {
+                for (int k = 0; i * i + k * i","for (int i = 0; i < max; ++i) {
+            int isPrime[i] = false;
+        }
+        for (int i = 0; i < max; ++i) {
+            if (isPrime[i]) {
+                System.out.print(i);
+                System.out.print(' ');
+            }
+        }
+    }
+    public static void prime_test(String[] args) {
+        int max = Integer.parseInt(args[0]);
+        for (int i = 0; i < max; ++i) {"
+than,"have a potential to be prime
+        }
+        for (int i = 0"
+< max; ++i),"= 1; ++i) { // we jump by i crossing out all complex numbers
+            if"
+"*/
+    private static void printPrimes(int max) {
+        boolean isPrime[] = new boolean[max];
+        for (int i = 2; i < max; ++i) {
+            isPrime[i] = true; // numbers bigge","and primes larger than max
+     * @return a list of primes of length max in that order
+    */
+    private static int isPrime(String[] args) {
+        int max = Integer.parseInt(args[0]);
+        int isPrime[0] = false;
+        for (int i = 1; i < max"
+"esi then return esi
+    cmovnl eax, edi ; else edi
+    ret ; result in eax
+umax:
+    cmp edi, esi
+    cmovb eax, esi ; if edi < esi then return es","cmovnb eax, edi ; endif ;
+    ret ; result in eax
+    amovnb edi, esi ; endif ;
+; Parameters in edi, esi registers
+mi"
+"rn esi
+    cmovnl eax, edi ; else edi
+    ret ; result in eax
+umax:
+    cmp edi, esi
+    cmovb eax, esi ; if edi < esi then return esi, b stand","lt;
+esi:
+    mov eax, esi ; else ret
+
+//global 130811314 in ecx_sp_addr
+#define 130811314 130811314
+#define 13081131"
+"eax, edi ; else edi
+    ret ; result in eax
+u","b eax, esi ; if edi < esi then return esi, b stands for BELOW
+    cmovb eax, esi ;"
+"ages directory
+    for brand in os.listdir(raw_images_dir):
+        raw_b","ages_dir, move them to the data_brand_folder
+    # to ensure no collisions.
+
+    for brand in os.listdir(raw_images_dir):"
+"a and raise error on collisions
+def move_images_with_collision_check(raw_images_dir, images_dir):
+    # Iterate through each brand folder in the raw_images directory
+    for brand in os.listdir(raw_images_dir):
+        raw_brand_folder = os.path.join(raw_images_dir, brand)
+        print(f""Moving image","a_images folder
+# Input: raw_images_folder path
+# Output:
+#   folder path where images are saved to.
+#    - raw_images folder will have two subfolders for each brand
+def move_raw_images(raw_images_folder):
+    files = [f for f in os.listdir(raw_images_folder) if os.path.isfile(os.path.join(raw_images_folder, f))]"
+"def move_images_with_collision_check(raw_images_dir, images_dir):
+    # Iterate through each brand folder in the raw_images directory
+    for brand in os.listdir(raw_images_dir):
+        raw_brand_folder = os.path.j","# move raw_images to data_raw
+def move_raw_images(raw_images_dir, brand):
+    raw_brand_folder = os.path.j"
+"# Check if the corresponding data brand folder exists in the data directory
+            if not os.path.exists(data_brand_","print(f""Data found in data: {raw_brand_folder}"")
+            else:
+                print(f""Data found in raw folder: {raw_brand_folder}"")
+        else:"
+a brand folder exists in the data directory,"a exists
+            if not os.path.exists(brand_folder_path):
+                print(f""Creating"
+"folder):
+            # Check if the corresponding da","folder):
+            os.makedirs(raw_brand_folder)
+            print(f""Creating brand folder in raw data"
+if not os.path.ex,"# We check if the brand directory already exists
+            if not os.path.exists(raw_brand"
+if not os.p,if os.p
+"ta_brand_folder, filename)
+                # Check if a file with the same name already exists in the destination
+                if os.path.exists(data_image_path):
+                    raise FileExistsError(f""File","ta_brand_folder, filename)
+
+                # Detect collision
+                if collision_check(data_image_path, raw_image_path):
+                    print(f""Collision detected: {data_image_path} already exists!"")
+                    # Move the file to the corresponding brand folder in the data"
+"ename in os.listdir(raw_brand_folder):
+                raw_image_path = os.path.join(raw_brand_folder, filename)
+                data_image_path = os.path.join(data_brand_folder, filename)
+                # Check if a file with the same name already exists in the destination
+                if os.path.exists(data_image_path):
+                    raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
+                # Move the file to the correspond","e_name in glob.glob(raw_image_path + ""/*.jpg""):
+                # Open the image file
+                raw_image = Image.open(file_name)
+                # Convert the image to grayscale
+                gray_image = Image.fromarray(raw_image)
+                # Save it to the data folder
+                gray_image.save(data_image_path)
+            # Iterate through the files in the data folder
+            for file_name in glob.glob(data_image_path + ""/*.jpg""):
+                # Open the image file
+                raw_image = Image.open(file_name"
+"w_image_path = os.path.join(raw_brand_folder, filename)
+                data_image_path = os.path.join(data_brand_folder, filename)
+                # Check if a file with the same name already exists in the destination
+                if os.path.exists(data_image_path):
+                    raise FileExistsError(f""File collision detected: {data_image_path} already exists!"")
+                # Move the file to the corresponding brand","g_image_path = raw_brand_folder + ""/"" + filename
+
+                if not os.path.isfile(raw_image_path):
+                    print(""Cannot find"", raw_image_path)
+                    continue
+
+                # Load image, crop it to make it easier to use in images that have
+                # different size
+                raw_image = cv2.imread(raw_image_path)
+                raw_image = cv2.cvtColor(raw_image, cv2.COLOR_BGR2RGB)
+                raw_image_size = raw_image."
+"(raw_brand_folder, filename)
+                data_image_path = os.path.join(data_brand_folder, filename)
+                # Check if a file with the same name already exists i","(raw_brand_folder, filename)
+                # Read the image as a string from the raw brand image folder
+                raw_image = Image.open(raw_image_path)
+                # Save the image to a file.
+                raw_image.save(data_image_"
+"v.begin(), v.end());
+    int i = 0;
+    int j = 0;
+    int s = v.size();
+    int ile_wyn = 0; // how many numbers can fit int the interval ""height"" 2 * r
+    int wyn = 0;     // the middle of the interval
+    while (j < s)
+    {
+        if (v[j] - v[i] <= 2 * r)
+        {
+            if (j - i >= ile_wyn)
+            {
+                ile_wyn = j - i;
+                wyn = (v[i] +","f[r]) = f[r], cmp(f[r] + "
+"int i = 0;
+    int j = 0;
+    int s = v.size();
+    int ile_wyn = 0; // how many numbers can fit int the interval ""height"" 2 * r
+    int wyn = 0;     // the middle of the interval
+    while (j < s)
+    {
+        if (v[j] - v[i] <= 2 * r)
+        {
+            if (j - i >= ile_wyn)
+            {
+                ile_wyn = j - i;
+                wyn = (v[i] + v[j]) / 2;
+            }
+            j++;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    return wyn;
+}
+int main()
+{
+    int n, r;
+    cin >>",cin
+"{
+        acc++;
+        a /= 2;
+    }","acc = 0;
+        for (int i = 0; i < a; i++)
+        {
+            acc += a"
+"0;
+    while (a > 1)
+    {
+        acc++;
+        a /=","a;
+    int cnt = 0;
+    int idx = 0;
+    scanf(""%lld"", &a);
+    scanf(""%lld"", &acc);"
+"long long int acc = 0;
+    while (a > 1)
+    {
+        acc++;
+        a /= 2;
+    }
+    return acc;
+}
+int main()
+{
+    long long int a;
+    scanf(""%lld""","a = %d;
+for (int i = 0; i < a.size; i++) {
+    logarytm(a"
+"print(""Hello, world!"")
+    print(""Hello, world!"")
+    print(""Hello, world!"")
+    print","for i in range(5):
+         print"
+"orld!"")
+    print(""Hello, world!"")","orld!"")
+    print(""Hello, world!"")
+    print(""Hello, world!"")
+    print(""Hello, world!"")"
+"Hello, world!"")
+    pr","Hello, world!"")
+    pr"
+"print(""Hello, world!"")",
+", world!"")
+    print(""Hello, world!"")
+    print(""Hello,","!"")
+
+
+def main():
+    print_1_hello_"
+"otal = 0
+    fo",imesta
+"ms_from_1_to_5():
+    total = 0
+    for i in ra","m_elements_from_list(self, list_of_lists: List[List[int]]) -> None:
+        for i, element in enumerate(list_"
