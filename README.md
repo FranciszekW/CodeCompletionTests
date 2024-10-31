@@ -38,7 +38,7 @@ For each code block, I picked two split points almost randomly to create
 multiple testing samples, aiming for 2 to 5 samples per block. Why? This
 approach would help me see how splitting the same code differently would
 affect the model's performance. However, I soon realized that I need to pay
-close attention to the split points: each part(prefix, middle, suffix)
+close attention to the split points: each part (prefix, middle, suffix)
 had to contain code.
 
 To fix this, I added extra restrictions on the split points in the
