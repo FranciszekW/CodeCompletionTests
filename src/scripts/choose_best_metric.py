@@ -3,7 +3,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from paths import METRICS_PATH
 
-# Load the dataset
+# Load the metrics dataset
 data = pd.read_csv(METRICS_PATH)
 
 # Extract  manual ratings as a column vector (that's what the cosine_similarity function expects)

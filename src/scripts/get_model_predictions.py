@@ -12,6 +12,7 @@ model_from = "bigcode/" + model_name
 tokenizer = AutoTokenizer.from_pretrained(model_from)
 model = AutoModelForCausalLM.from_pretrained(model_from).to(device)
 
+# Load the examples dataset
 df = pd.read_csv(EXAMPLES_PATH)
 
 
@@ -23,10 +24,10 @@ def generate_middle_text(prefix, suffix, num_mid_tokens=100):
     with torch.no_grad():
         output_ids = model.generate(
             input_ids,
+            # After some playing with the parameters, these seem to work well
             top_p=0.9,
             top_k=50,
             do_sample=True,
-            # 2 * mid_length to allow some flexibility in generating the middle text
             max_new_tokens=num_mid_tokens,
             pad_token_id=tokenizer.eos_token_id,
             attention_mask=input_ids.ne(tokenizer.eos_token_id))
@@ -34,7 +35,7 @@ def generate_middle_text(prefix, suffix, num_mid_tokens=100):
     completion = tokenizer.decode(output_ids[0])
 
     # Extract the middle text from the completion by taking the text after the <fim_middle> token
-    # We're not removing the tokens before, because the model could possibly change our
+    # Don't remove the tokens before, because the model could possibly change the
     # prefix or suffix, and then it would be messed up
     generated_text = completion.split("<fim_middle>")[1].strip().replace('<|endoftext|>', "")
     return generated_text
@@ -50,7 +51,7 @@ def main():
                                                 num_mid_tokens + 15)  # Add some flexibility
         completions.append((middle, generated_middle))
 
-    # Save the completions to a new CSV file
+    # Save the completions to a predictions CSV file
     output_df = pd.DataFrame(completions, columns=['Actual', 'Predicted'])
     output_df.to_csv(PREDICTIONS_PATH, index=False)
 

@@ -7,11 +7,14 @@ from rouge import Rouge
 import paths
 from src.scripts.paths import PREDICTIONS_PATH, METRICS_PATH
 
-# Load the completions dataset
+# Load the completions dataset and the metrics dataset (output)
 completions_df = pd.read_csv(PREDICTIONS_PATH)
 results_df = pd.read_csv(METRICS_PATH)
 
-# Initialize metrics
+# Fill NaN values with spaces (the metrics functions don't like NaNs or empty strings)
+completions_df['Predicted'] = completions_df['Predicted'].fillna(" ")
+
+# Initialize rouge metric
 rouge = Rouge()
 
 # Prepare lists to hold results
@@ -48,7 +51,7 @@ for index, row in completions_df.iterrows():
     edit_distance = editdistance.eval(actual, predicted)
     max_len = max(len(actual), len(predicted))
     normalized_edit_distance = edit_distance / max_len if max_len > 0 else 0
-    # We want to give higher scores when less changes are needed, so we invert the normalized edit distance
+    # Invert the normalized edit distance to get higher scores when less changes are needed
     inverted_edit_distance = 1 - normalized_edit_distance
     edit_distance_scores.append(inverted_edit_distance)
 

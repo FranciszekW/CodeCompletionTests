@@ -7,6 +7,7 @@ examples_df = pd.read_csv(EXAMPLES_PATH)
 completions_df = pd.read_csv(PREDICTIONS_PATH)
 
 metrics_df = pd.DataFrame(index=range(len(completions_df)))
+
 # Clear the csv file if it already exists
 metrics_df.to_csv(METRICS_PATH, index=False)
 

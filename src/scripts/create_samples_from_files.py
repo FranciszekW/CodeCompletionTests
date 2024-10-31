@@ -5,6 +5,7 @@ import csv
 from paths import EXAMPLES_PATH
 
 
+# Split each file into smaller, "independent" code blocks
 def extract_code_blocks(file_path):
     with open(file_path, 'r') as file:
         code = file.read()
@@ -59,7 +60,7 @@ def main():
             print(f"Processing code blocks from {file_path}...\n")
             for i, block in enumerate(blocks):
                 num_examples = random.randint(MIN_SAMPLES,
-                                              MAX_SAMPLES)  # For each block, generate 4-8 examples
+                                              MAX_SAMPLES)  # For each block, generate 2-5 examples
                 for j in range(num_examples):
                     prefix, middle, suffix = split_code_block(block)
                     all_examples.append((prefix, middle, suffix))
