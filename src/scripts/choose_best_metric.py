@@ -1,9 +1,10 @@
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 
+from paths import METRICS_PATH
+
 # Load the dataset
-file_path = "../../data/tiny_starcoder_metrics.csv"
-data = pd.read_csv(file_path)
+data = pd.read_csv(METRICS_PATH)
 
 # Extract  manual ratings as a column vector (that's what the cosine_similarity function expects)
 manual_ratings = data['Manual'].values.reshape(1, -1)

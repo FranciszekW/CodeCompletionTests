@@ -1,12 +1,15 @@
 import pandas as pd
+import editdistance
 from nltk.translate.chrf_score import sentence_chrf
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from rouge import Rouge
-import editdistance
+
+import paths
+from src.scripts.paths import PREDICTIONS_PATH, METRICS_PATH
 
 # Load the completions dataset
-completions_df = pd.read_csv('../../data/tiny_starcoder_py.csv')
-results_df = pd.read_csv('../../data/tiny_starcoder_metrics.csv')
+completions_df = pd.read_csv(PREDICTIONS_PATH)
+results_df = pd.read_csv(METRICS_PATH)
 
 # Initialize metrics
 rouge = Rouge()
@@ -57,6 +60,6 @@ results_df['ROUGE-L'] = rouge_l_scores
 results_df['Edit Distance'] = edit_distance_scores
 
 # Append the results to metrics csv
-results_df.to_csv('../../data/tiny_starcoder_metrics.csv', index=False)
+results_df.to_csv(METRICS_PATH, index=False)
 
-print("Metrics have been calculated and saved to tiny_starcoder_metrics.csv.")
+print(f"Metrics have been calculated and saved to {METRICS_PATH}.")

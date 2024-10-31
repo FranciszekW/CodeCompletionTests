@@ -1,18 +1,18 @@
 import pandas as pd
-
-df = pd.read_csv('../../data/examples_dataset.csv')
-
 import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+from paths import EXAMPLES_PATH, PREDICTIONS_PATH
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-
-from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Load the model and tokenizer
 model_name = "tiny_starcoder_py"
 model_from = "bigcode/" + model_name
 tokenizer = AutoTokenizer.from_pretrained(model_from)
 model = AutoModelForCausalLM.from_pretrained(model_from).to(device)
+
+df = pd.read_csv(EXAMPLES_PATH)
 
 
 def generate_middle_text(prefix, suffix, num_mid_tokens=100):
@@ -46,24 +46,14 @@ def main():
     for index, row in df.iterrows():
         prefix, middle, suffix = row['Prefix'], row['Middle'], row['Suffix']
         num_mid_tokens = len(tokenizer.tokenize(middle))
-        generated_middle = generate_middle_text(prefix, suffix, num_mid_tokens + 15) # Add some flexibility
+        generated_middle = generate_middle_text(prefix, suffix,
+                                                num_mid_tokens + 15)  # Add some flexibility
         completions.append((middle, generated_middle))
 
     # Save the completions to a new CSV file
     output_df = pd.DataFrame(completions, columns=['Actual', 'Predicted'])
-    output_df.to_csv(f'../../data/{model_name}.csv', index=False)
+    output_df.to_csv(PREDICTIONS_PATH, index=False)
+
 
 if __name__ == '__main__':
     main()
-
-
-# def test():
-#     input_text = "<fim_prefix>def print_one_two_three():\n    print('one')\n    <fim_suffix>\n    print('three')<fim_middle>"
-#     inputs = tokenizer.encode(input_text, return_tensors="pt").to(device)
-#     outputs = model.generate(inputs, max_new_tokens=5, pad_token_id=tokenizer.eos_token_id, attention_mask=inputs.ne(tokenizer.eos_token_id))
-#     completion = tokenizer.decode(outputs[0], skip_special_tokens=True)
-#     generated_text = completion.replace("def print_one_two_three():\n    print('one')\n    ", "").replace("\n    print('three')", "")
-#     print(generated_text)
-
-
-# test()

@@ -1,21 +1,16 @@
 import pandas as pd
 
+from paths import EXAMPLES_PATH, PREDICTIONS_PATH, METRICS_PATH
+
 # Load the datasets
-examples_df = pd.read_csv('../../data/examples_dataset.csv')
-completions_df = pd.read_csv('../../data/tiny_starcoder_py.csv')
+examples_df = pd.read_csv(EXAMPLES_PATH)
+completions_df = pd.read_csv(PREDICTIONS_PATH)
 
-# Define the model name (e.g., "tiny_starcoder")
-model_name = "tiny_starcoder"
+metrics_df = pd.DataFrame(index=range(len(completions_df)))
+# Clear the csv file if it already exists
+metrics_df.to_csv(METRICS_PATH, index=False)
 
-# Create metrics dataframe if it doesn't exist
-try:
-    metrics_df = pd.read_csv('../../data/tiny_starcoder_metrics.csv')
-except FileNotFoundError:
-    metrics_df = pd.DataFrame(index=range(len(completions_df)))
-
-# Add model name as a column if not already in metrics_df
-if model_name not in metrics_df.columns:
-    metrics_df['Manual'] = None
+metrics_df['Manual'] = None
 
 # Loop over each example and prompt for rating
 for index, (example_row, completion_row) in enumerate(
@@ -44,6 +39,6 @@ for index, (example_row, completion_row) in enumerate(
     metrics_df.at[index, 'Manual'] = rating
 
     # Save metrics after each input to prevent data loss
-    metrics_df.to_csv('../../data/tiny_starcoder_metrics.csv', index=False)
+    metrics_df.to_csv(METRICS_PATH, index=False)
 
-print("\nAll metrics have been saved to tiny_starcoder_metrics.csv.")
+print(f"\nManual metrics have been saved to {METRICS_PATH}.")
