@@ -1,5 +1,11 @@
 ## Project Overview
 
+This project aims to evaluate the performance of the code completion model
+`tiny_starcoder` across various programming languages.
+
+The workflow involved preparing the dataset, running the model to generate code completions, and
+then reviewing those outputs both manually and using automated metrics. 
+
 ### Introduction
 
 For this project, I chose several files from my personal work,
